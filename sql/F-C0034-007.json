@@ -1,0 +1,18 @@
+{
+ "cwaopendata": {
+  "@xmlns": "urn:cwa:gov:tw:cwacommon:0.1",
+  "identifier": "c13d3a0d-9494-f08e-7944-9615c957c7b6",
+  "sender": "weather@cwa.gov.tw",
+  "sent": "2024-07-26T06:59:22+08:00",
+  "status": "Actual",
+  "msgType": "Issue",
+  "dataid": "C0034-007",
+  "dataset": {
+   "resource": {
+    "resourceDesc": "總雨量預測",
+    "mimeType": "application/xml",
+    "uri": "https://cwaopendata.s3.ap-northeast-1.amazonaws.com/Forecast/AllPrecipTable.xml"
+   }
+  }
+ }
+}
