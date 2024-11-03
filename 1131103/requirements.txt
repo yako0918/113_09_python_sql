@@ -7,3 +7,7 @@ Pyarrow
 yfinance
 python-dotenv
 virtualenv
+# 使用 streamlit 
+# 1-pip install streamlit
+# 2-streamlit hello  
+# streamlit run +檔名py
