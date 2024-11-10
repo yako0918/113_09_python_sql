@@ -1,0 +1,13 @@
+#  在程式碼內執行  pip install -r requirements.txt
+psycopg2-binary
+streamlit
+pandas
+pandas-datareader
+Pyarrow
+yfinance
+python-dotenv
+virtualenv
+# 使用 streamlit 
+# 1-pip install streamlit
+# 2-streamlit hello  
+# streamlit run +檔名py
