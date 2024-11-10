@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  11309pythonsql:
+    image: 11309pythonsql
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
