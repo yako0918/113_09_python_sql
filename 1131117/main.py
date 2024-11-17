@@ -1,4 +1,4 @@
-/*
+"""
 from dotenv import load_dotenv
 import streamlit as st
 from time import sleep
@@ -14,8 +14,9 @@ with placeholder:
     sleep(3)
 
 
-placeholder.empty()
-*/
+placeholder.empty()  
+# 多行註解"""----"""
+"""
 
 
 
