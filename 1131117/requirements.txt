@@ -1,8 +1,11 @@
-streamlit
+streamlit   #   網頁伺服器套件
 python-dotenv==1.0.1
 psycopg2-binary
+pip install requests==2.32.3    #   json工具
+rich    #   文字工具
 
 
-#
-#
+
+#   在虛擬終端機執行
+# pip install -r requirements.txt
 #
