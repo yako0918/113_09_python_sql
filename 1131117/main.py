@@ -1,7 +1,9 @@
 """
+
 from dotenv import load_dotenv
 import streamlit as st
 from time import sleep
+#    第一種 網頁變數
 from datasource import get_data
 load_dotenv()
 
@@ -16,13 +18,14 @@ with placeholder:
 
 placeholder.empty()  
 # 多行註解 
-"""
 
 
-"""
+
+
 from dotenv import load_dotenv
 import streamlit as st
 from time import sleep
+#   第二種網頁變數
 from datasource import get_data
 load_dotenv()
 
@@ -36,11 +39,13 @@ with st.spinner('下載資料中...'):
         get_data()
 alert()
 st.write('顯示頁面')
+
 """
 
 from dotenv import load_dotenv
 import streamlit as st
 from time import sleep
+#   第三種網頁變數
 from tools.datasource import get_data
 load_dotenv()
 

@@ -8,6 +8,6 @@ class CustomClass:
 import time
 #自訂的function
 def get_data():
-    time.sleep(10)
-
+    time.sleep(5)
+    url = 'https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json' 
     
