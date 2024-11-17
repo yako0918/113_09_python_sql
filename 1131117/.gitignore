@@ -2,5 +2,6 @@
 # 不要上傳的黨名      .env
 # 不要上傳的暫存檔     __pycache__  
 
-
+#.env
+#__pycache__
 
