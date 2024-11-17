@@ -1,54 +1,8 @@
-#  
-#來把套件升級到最新的版本
-#  python.exe -m pip install --upgrade pip   系統更新
-#
-#   pip 做版本升級
-#   pip3 install --upgrade pip
-#   用下列指令看一下您目前環境版本
-#   pip3 list
-#   首先，您可以利用下面指令進行安裝 virtualenv 套件
-#   pip3 install virtualenv
-#   建立虛擬環境
-#   接下來我們就試著建立自己的第一個虛擬環境，筆者先在C:\> 
-#   建立一個資料夾叫做mypython3的資料夾，並且在此資料夾下
-#   輸入並執行下列指令，就可以自訂產生一個叫做env01的虛擬
-#   環境。可以自訂產生一個叫做env01的虛擬環境。
-#   virtualenv env01
-#
-#   接下來就是在要開始啟動虛擬環境。您可以在 CMD 模式下進
-#   入 Scripts 目錄(在env01中)，接著 CMD 裡輸入activate就好了
-#   activate
-#
-#   離開虛擬環境
-#   若要離開虛擬環境，只要輸入deactivate就可以離開目前虛擬環境
-#   ，並且發現最前面已經沒有(env01)
-#   deactivate
-
-
-#  建立與管理虛擬環境的模組叫做 venv
-#  啟動虛擬環境 
-#  只要使用系統套件管理程式安裝即可  sudo apt install python3-venv
-#  在建立虛擬環境的時候 
-#  python -m venv v1-env
-#  python -m venv 虛擬環境名稱
-#
-#  在終端機內執行  pip install -r requirements.txt  安裝下面套件 #
-
-
 streamlit
 python-dotenv==1.0.1
 psycopg2-binary
 
-pandas
-pandas-datareader
-Pyarrow
-yfinance
-virtualenv
-psycopg2-binary
 
-
-# 使用 streamlit 網頁
-# 1-pip install streamlit
-# 2-streamlit hello  
-# streamlit run +檔名py
-# pip list 看安裝 那些的套件
+#
+#
+#

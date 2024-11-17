@@ -1,1 +1,9 @@
 .env  是密碼
+
+
+#
+# 
+#   streamlit run main.py
+#
+#   啟動網頁伺服器
+#   
