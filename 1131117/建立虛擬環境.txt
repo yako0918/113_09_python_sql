@@ -1,0 +1,41 @@
+
+
+12.2. 建立虛擬環境
+用來建立與管理虛擬環境的模組叫做 venv。venv 將安裝執行命令的 Python 版本
+（如 --version 選項所報告的）。例如使用 python3.12 執行命令將安裝 3.12 版本。
+
+在建立虛擬環境的時候，在你決定要放該虛擬環境的資料夾之後，以腳本 (script) 執行
+ venv 模組並且給定資料夾路徑：
+
+python -m venv tutorial-env
+如果 tutorial-env 不存在的話，這會建立 tutorial-env 資料夾，並且也會在裡面
+建立一個有 Python 直譯器的複本以及不同的支援檔案的資料夾。
+
+虛擬環境的常用資料夾位置是 .venv。這個名稱通常會使該資料夾在你的 shell 中保
+持隱藏，因此這樣命名既可以解釋資料夾存在的原因，也不會造成任何困擾。它還能防
+止與某些工具所支援的 .env 環境變數定義檔案發生衝突。
+
+一旦你建立了一個虛擬環境，你可以啟動它。
+在 Windows 系統中，使用：
+
+tutorial-env\Scripts\activate
+在 Unix 或 MacOS 系統，使用：
+
+source tutorial-env/bin/activate
+（這段程式碼適用於 bash shell。如果你是用 csh 或者 fish shell，應當使用替代的 activate.csh 與 activate.fish 腳本。）
+
+啟動虛擬環境會改變你的 shell 提示字元來顯示你正在使用的虛擬環境，並且修改環境以讓你在執行 python 的時候可以得到特定的 Python 版本，例如：
+
+$ source ~/envs/tutorial-env/bin/activate
+(tutorial-env) $ python
+
+Python 3.5.1 (default, May  6 2016, 10:59:36)
+  ...
+>>> import sys
+>>> sys.path
+['', '/usr/local/lib/python35.zip', ...,
+'~/envs/tutorial-env/lib/python3.5/site-packages']
+>>>
+要停用虛擬環境，輸入：
+
+deactivate 於終端機中。

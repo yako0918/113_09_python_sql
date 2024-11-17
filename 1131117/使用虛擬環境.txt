@@ -1,0 +1,165 @@
+python -m venv .venv
+
+隨著使用 Python 的過程, 我們可能會遇到某個程式需要 A 版
+本的 M 套件, 但是另一個程式卻只能和 B 版本的 M 套件相容
+, 或是我們只想測試一下 M 套件, 但不希望因為安裝了 M 套
+件導致 Python 環境安裝了 M 套件所倚賴的其他套件, 這時我
+們就可以利用 venv 模組提供的虛擬環境功能, 建立獨立的 
+Python 環境, 客製安裝所需的套件, 而不會弄亂系統本身的
+ Python 環境。
+
+建立虛擬環境
+要建立虛擬環境, 必須執行 venv 模組, 並以要放置虛擬
+環境資料的路徑為參數, 指定的路徑若不存在, venv 會自
+動建立。Windows 上建立虛擬環境的指令如下：
+
+❯ py -m venv testenv
+
+在 Mac/Linux 下的指令如下：
+
+$ python3 -m venv testenv
+
+在 Linux 上, 可能會遇到沒有安裝 venv 的情況：
+
+$ python3 -m venv testenv
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt-get install python3-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: ['/home/meebox/code/testenv/bin/python3', '-Im', 'ensurepip', '--upgrade', '--default-pip']
+
+
+只要使用系統套件管理程式安裝即可, 以下以 apt 為例：
+
+$ sudo apt install python3-venv
+
+實際上建立虛擬環境就是在該路徑下複製一份 Python 的檔案,
+ 包括執行檔以及必要的資料夾結構, 內容就跟剛安裝好的 Python 近似。
+
+後續的實驗會以我的 Python 系統已經安裝的 numpy 為觀察
+標的, 這裡先查看目前安裝的 numpy 套件版本：
+
+$ pip3 show numpy
+Name: numpy
+Version: 1.22.2
+Summary: NumPy is the fundamental package for array computing with Python.
+Home-page: https://www.numpy.org
+Author: Travis E. Oliphant et al.
+Author-email: None
+License: BSD
+Location: /home/meebox/.local/lib/python3.9/site-packages
+Requires:
+Required-by:
+表示我的 Python 系統上安裝有 1.22.2 版的 numpy 套件。
+
+轉換到虛擬環境
+要使用剛剛建立的虛擬環境, 必須啟用 (activate) 它, 在
+ Windows 上必須執行虛擬環境路徑的 Scripts 資料夾下的 activate.ps1 指令：
+
+❯ .\testenv\Scripts\activate.ps1
+
+(testenv) ❯
+
+若你不是使用 PowerShell, 而是使用命令提示字元, 要執行的是 activate.bat。
+
+切換成功會看到提示符號會多顯示出虛擬環境資料夾的名稱 (實際顯示
+的位置視你的提示符號設定而定)。
+
+在 Linux 上, 要使用 source 指令執行虛擬環境路徑 bin 資料夾下的 activate 草稿碼：
+
+$ source testenv/bin/activate
+
+~/code (testenv) $
+
+如果你使用的是 csh 或是 fish shell, 要改成對應的 activate.csh 
+或是 activate.fish 草稿碼檔。
+
+切換成功一樣會顯示虛擬環境的資料夾名稱。
+
+啟用的程序實際上就是修改環境變數, 讓你改成執行虛擬環境資料夾下的
+這一份 Python, 即使安裝套件, 也是安裝到虛擬環境的資料夾下。
+
+測試獨立的虛擬環境
+我們可以查看在啟用的虛擬環境中, 是不是有原本安裝在 Python 系統的 numpy 套件：
+
+(testenv) $ pip3 show numpy
+WARNING: Package(s) not found: numpy
+你會發現虛擬環境中根本就沒有安裝 numpy 套件。這裡我們安裝上一版 1.21.0 的 numpy：
+
+(testenv) $ pip3 install numpy==1.21.0
+Collecting numpy==1.21.0
+  ...
+Installing collected packages: numpy
+Successfully installed numpy-1.21.0
+稍後我們就可以在離開虛擬環境後確認是否會影響到系統的 Python 環境。
+
+離開虛擬環境
+啟用虛擬環境後, 會新增 deactivate 指令, 在任何地方下達此指令, 即可離開虛擬環境, 在 Windows 的示範如下：
+
+(testenv) ❯ deactivate
+
+❯
+Linux 下則是：
+
+(testenv) $ deactivate
+
+$
+
+你會發現離開虛擬環境後, 提示符號就不會再出現虛擬環境的資料夾名稱了。
+
+這個 deactivate 在 PowerShell 或是 Linux 下是一個在啟用虛擬環境時建立的 shell 函式, 所以不論是在哪個路徑下都可以執行。在命令提示字元下, deactivate 其實是存在於 Scripts 資料夾下的批次檔 deactivate.bat, 但因為在啟用虛擬環境時已經將 Scripts 資料夾加入 path 環境變數, 所以也可以在任意路徑下執行。
+
+檢測原始 Python 環境
+還記得我們剛剛在虛擬環境中安裝了 1.21.0 版的 numpy 嗎？現在我們檢視一下原本系統上 Python 環境 的 numpy 版本：
+
+$ pip3 show numpy
+Name: numpy
+Version: 1.22.2
+Summary: NumPy is the fundamental package for array computing with Python.
+Home-page: https://www.numpy.org
+Author: Travis E. Oliphant et al.
+Author-email: None
+License: BSD
+Location: /home/meebox/.local/lib/python3.9/site-packages
+Requires:
+Required-by:
+
+
+你會看到還是原本的 1.22.0, 不會受到虛擬環境的影響, 也就是說, 我們現在有兩個 Python 環境, 想用 1.21.0 版的 numpy 時, 可以切換到虛擬環境, 想用 1.22.0 版的 numpy, 就回到系統本身的環境, 甚至還可以依據需要, 建立其他的虛擬環境。
+
+更新依附的 Python 版本
+如果你安裝了其他版本的 Python, 想要讓虛擬環境改用特定的 Python, 只要使用 --upgrade 選項更新虛擬環境即可。例如以下原本建立虛擬環境的時候, 使用的是 Python 3.10.9：
+
+> .\testenv\Scripts\activate
+(testenv) > python --version
+Python 3.10.9
+(testenv) > deactivate
+>
+而現在系統上預設的 Python 是 3.11.2 版：
+
+> python --version
+
+Python 3.11.2
+透過以下指令, 即可讓現有的虛擬環境改用 3.11.2 版：
+
+> python -m venv --upgrade testenv
+> .\testenv\Scripts\activate
+(testenv) > python --version
+Python 3.11.2
+(testenv) >
+這並不限於更新版本, 也可以轉換到舊到的版本。
+
+刪除虛擬環境
+若要刪除虛擬環境, 由於虛擬環境的資料的資料全部都在單一資料夾
+中, 所以只要先離開虛擬環境, 再將虛擬環境的資料夾刪除即可。
+
+小結
+初學階段可能不會覺得有必要使用虛擬環境, 不過隨著應用的複雜
+度提升, 適度使用虛擬環境區隔不同的需求是個好主意, 甚至萬一
+不小心把 Python 環境弄亂了, 也不必急著清理, 先建一個乾淨的
+虛擬環境應急也是不錯的權宜措施。
